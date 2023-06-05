@@ -48,7 +48,6 @@
 
 
 
-
 let string = "";
 let memory = 0;
 let buttons = document.querySelectorAll(".button");
@@ -60,9 +59,6 @@ const evaluateExpression = (expression) => {
 Array.from(buttons).forEach((button) => {
   button.addEventListener("click", (e) => {
     if (e.target.innerHTML === "=") {
-      if (string.includes("--")) {
-        string = string.replace("--", "+");
-      }
       string = evaluateExpression(string);
       document.querySelector("input").value = string;
     } else if (e.target.innerHTML === "AC") {
@@ -77,21 +73,18 @@ Array.from(buttons).forEach((button) => {
     } else if (e.target.innerHTML === "MC") {
       memory = 0;
     } else if (e.target.innerHTML === "√x") {
-      string = Math.sqrt(parseFloat(string));
+      string = Math.sqrt(parseFloat(string)).toString();
       document.querySelector("input").value = string;
     } else if (e.target.innerHTML === "x²") {
-      string = parseFloat(string) ** 2;
+      string = (parseFloat(string) ** 2).toString();
       document.querySelector("input").value = string;
     } else if (e.target.innerHTML === "x!") {
       let num = parseInt(string);
-      let result = 1;
-      for (let i = 1; i <= num; i++) {
+      let result = 1n;
+      for (let i = 1n; i <= BigInt(num); i++) {
         result *= i;
       }
       string = result.toString();
-      document.querySelector("input").value = string;
-    } else if (e.target.innerHTML === "/") {
-      string += "/";
       document.querySelector("input").value = string;
     } else {
       console.log(e.target);
@@ -100,3 +93,4 @@ Array.from(buttons).forEach((button) => {
     }
   });
 });
+
