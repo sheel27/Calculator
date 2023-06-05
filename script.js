@@ -2,9 +2,9 @@ let string = "";
 let memory = 0;
 let buttons = document.querySelectorAll(".button");
 
-// const evaluateExpression = (expression) => {
-//   return new Function("return" + expression)();
-// };
+const evaluateExpression = (expression) => {
+  return new Function("return" + expression)();
+};
 
 Array.from(buttons).forEach((button) => {
   button.addEventListener("click", (e) => {
